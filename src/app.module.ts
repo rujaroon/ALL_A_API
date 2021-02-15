@@ -3,6 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
+import { EmployerModule } from './employer/employer.module';
+import { EmplyterController } from './emplyter/emplyter.controller';
+import { StudentModule } from './student/student.module';
 
 
 @Module({
@@ -15,9 +20,9 @@ import { join } from 'path';
     database: 'all_a',
     entities: [join(__dirname, '**/*.entity.{ts,js}')],
     synchronize: true, //auto migration when db schema change
-  })
+  }), UserModule, AuthModule, EmployerModule, StudentModule
 ],
-  controllers: [AppController],
+  controllers: [AppController, EmplyterController],
   providers: [AppService],
 })
 export class AppModule {}
